@@ -9,7 +9,7 @@ public class Client {
             double x = Double.parseDouble(args[0]);
 
             try {
-                SquareRoot squareServer = (SquareRoot) Naming.lookup(String.format("%s", SquareRoot.name));
+                SquareRoot squareServer = (SquareRoot) Naming.lookup("pippo");
 
                 double result = squareServer.calculateSquareRoot(x);
                 System.out.println(result);
