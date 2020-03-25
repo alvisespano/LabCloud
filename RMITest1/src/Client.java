@@ -9,10 +9,19 @@ public class Client {
             double x = Double.parseDouble(args[0]);
 
             try {
-                SquareRoot squareServer = (SquareRoot) Naming.lookup("pippo");
+                SquareRoot server = (SquareRoot) Naming.lookup(SquareRoot.name);
 
-                double result = squareServer.calculateSquareRoot(x);
+                double result = server.calculateSquareRoot(x);
                 System.out.println(result);
+
+                Person p = new Person("Pippo", "Baudo", "Via col vento", 80);
+                int age = server.getPersonAge(p);
+                System.out.println(String.format("age = %d", age));
+
+                p = server.makeOlder(p, 10);
+                System.out.println(p);
+
+
             } catch (NotBoundException | RemoteException | MalformedURLException e) {
                 e.printStackTrace();
             }
