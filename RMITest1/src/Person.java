@@ -1,14 +1,36 @@
+import java.io.File;
 import java.io.Serializable;
 
 public class Person implements Serializable {
     private String name, surname, address;
     private int age;
+    private Person other;
+    private File file;
 
     public Person(String name, String surname, String address, int age) {
         this.name = name;
         this.surname = surname;
         this.address = address;
         this.age = age;
+    }
+
+    public String serialize2XML() {
+        return String.format(
+                "<root name=\"Person\">" +
+                        "<field name=\"name\" type=\"String\" value=\"%s\" />" +
+                        "<field name=\"surname\" type=\"String\" value=\"%s\" />" +
+                        "<field name=\"address\" type=\"String\" value=\"%s\" />" +
+                        "<field name=\"age\" type=\"int\" value=\"%d\" />" +
+                "</root>", name, surname, address, age);
+    }
+
+    public String serialize2JSON() {
+        return String.format(
+                "{ name: \"%s\"" +
+                        " surname: \"%s\"" +
+                        " address: \"%s\"" +
+                        " age: \"%d\"" +
+                        "}", name, surname, address, age);
     }
 
     @Override
