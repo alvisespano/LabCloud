@@ -36,18 +36,20 @@ public class Client {
                 double result = srv.calculateSquareRoot(x);
                 System.out.println(result);
 
-                Person p = new Person("Pippo", "Baudo", "Via col vento", 80);
-                int age = srv.getPersonAge(p);
-                System.out.println(String.format("age = %d", age));
-
-                p = srv.makeOlder(p, 10);
-                System.out.println(p);
-
-                Woman p2 = new Woman("Maria", "Callas", "Via blabla", 50);
-                p2.add(Item.HANDBAG);
-                p2.add(Item.LIPSTICK);
-                p2 = srv.makeOlder(p2, 10);
-                System.out.println(p2);
+                // second example
+//                Person p = new Person("Pippo", "Baudo", "Via col vento", 80);
+//                int age = srv.getPersonAge(p);
+//                System.out.println(String.format("age = %d", age));
+//
+//                p = srv.makeOlder(p, 10);
+//                System.out.println(p);
+//
+//                Woman p2 = new Woman("Maria", "Callas", "Via blabla", 50);
+//                p2.add(Item.HANDBAG);
+//                p2.add(Item.LIPSTICK);
+//                p2.add(Item.MAKEUP);
+//                p2 = srv.makeOlder(p2, 10);
+//                System.out.println(p2);
 
 
             } catch (NotBoundException | RemoteException | MalformedURLException e) {
