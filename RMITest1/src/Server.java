@@ -1,3 +1,5 @@
+import java.net.MalformedURLException;
+import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -8,6 +10,8 @@ public class Server extends UnicastRemoteObject implements MyRemoteService {
     public Server() throws RemoteException {
         System.out.println("constructor: Server");
     }
+
+    public void foo() {}
 
     @Override
     public double calculateSquareRoot(double x) {
@@ -32,14 +36,17 @@ public class Server extends UnicastRemoteObject implements MyRemoteService {
     public static void main(String[] args) {
         try {
             MyRemoteService server = new Server();
-            Registry reg = LocateRegistry.createRegistry(MyRemoteService.port);
-            // register the service name
-            reg.rebind(MyRemoteService.serviceName, server);
+
+            // create registry and register the service name
+            //Registry reg = LocateRegistry.createRegistry(MyRemoteService.port);
+            //reg.rebind(MyRemoteService.serviceName, server);
+
             // or globally
-//            Naming.rebind(RemoteService.rmiURI, server);
+            Naming.rebind(MyRemoteService.rmiURI, server);
+
             System.out.println("server up @ " + MyRemoteService.rmiURI);
 
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
