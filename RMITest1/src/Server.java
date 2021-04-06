@@ -11,8 +11,6 @@ public class Server extends UnicastRemoteObject implements MyRemoteService {
         System.out.println("constructor: Server");
     }
 
-    public void foo() {}
-
     @Override
     public double calculateSquareRoot(double x) {
         return Math.sqrt(x);
@@ -37,11 +35,12 @@ public class Server extends UnicastRemoteObject implements MyRemoteService {
         try {
             MyRemoteService server = new Server();
 
-            // create registry and register the service name
+            // mode 1: create registry and register the service name
             //Registry reg = LocateRegistry.createRegistry(MyRemoteService.port);
             //reg.rebind(MyRemoteService.serviceName, server);
 
-            // or globally
+            // mode 2: use the global registry
+            // 'rmiregistry' program must be running in the background on your machine
             Naming.rebind(MyRemoteService.rmiURI, server);
 
             System.out.println("server up @ " + MyRemoteService.rmiURI);
