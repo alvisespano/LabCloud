@@ -16,24 +16,29 @@ public class Server extends UnicastRemoteObject implements MyRemoteService {
         return Math.sqrt(x);
     }
 
-//    @Override
-//    public int getPersonAge(Person p) {
-//        return p.getAge();
-//    }
-//
-//    @Override
-//    public <P extends Person> P makeOlder(P p, int amount) throws RemoteException {
-//        // side effect
-//        p.setAge(p.getAge() + amount);
-//        return p;
-//
-//        // create a new object
-//        //return new Person(p.getName(), p.getSurname(), p.getAddress(), p.getAge() + amount);
-//    }
+    @Override
+    public int getPersonAge(Person p) {
+        return p.getAge();
+    }
+
+    public Person makeOlder2(Person p, int amount) throws RemoteException {
+        p.setAge(p.getAge() + amount);
+        return p;
+    }
+
+        @Override
+    public <P extends Person> P makeOlder(P p, int amount) throws RemoteException {
+        // side effect
+        p.setAge(p.getAge() + amount);
+        return p;
+
+        // create a new object
+        //return new Person(p.getName(), p.getSurname(), p.getAddress(), p.getAge() + amount);
+    }
 
     public static void main(String[] args) {
         try {
-            MyRemoteService server = new Server();
+            MyRemoteService server = new NegServer();
 
             // mode 1: create registry and register the service name
             //Registry reg = LocateRegistry.createRegistry(MyRemoteService.port);
@@ -41,7 +46,7 @@ public class Server extends UnicastRemoteObject implements MyRemoteService {
 
             // mode 2: use the global registry
             // 'rmiregistry' program must be running in the background on your machine
-            Naming.rebind(MyRemoteService.rmiURI, server);
+            Naming.rebind(/*MyRemoteService.rmiURI*/"test", server);
 
             System.out.println("server up @ " + MyRemoteService.rmiURI);
 

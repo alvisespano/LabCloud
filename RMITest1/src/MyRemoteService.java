@@ -12,7 +12,7 @@ public interface MyRemoteService extends Remote {
     double calculateSquareRoot(double x) throws RemoteException;
 
     // example 2
-//    int getPersonAge(Person p) throws RemoteException;
-//    <P extends Person> P makeOlder(P p, int amount) throws RemoteException;
+    int getPersonAge(Person p) throws RemoteException;
+    <P extends Person> P makeOlder(P p, int amount) throws RemoteException;
 
 }
