@@ -55,16 +55,17 @@ public class Person implements Serializable {
                         "<field name=\"surname\" type=\"String\" value=\"%s\" />" +
                         "<field name=\"address\" type=\"String\" value=\"%s\" />" +
                         "<field name=\"age\" type=\"int\" value=\"%d\" />" +
-                "</root>", name, surname, address, age);
+                        "<objfield name=\"per\" type=\"Person\">%s</objfield>" +
+                "</root>", name, surname, address, age, per.serialize2XML());
     }
-
     public String serialize2JSON() {
         return String.format(
                 "{ name: \"%s\"" +
                         " surname: \"%s\"" +
                         " address: \"%s\"" +
                         " age: \"%d\"" +
-                        "}", name, surname, address, age);
+                        " per: %s" +
+                        "}", name, surname, address, age, per.serialize2JSON());
     }*/
 
     @Override

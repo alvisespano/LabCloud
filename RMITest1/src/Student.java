@@ -18,18 +18,33 @@ public class Student extends Person {
         }
     }
 
-    private final List<Exam> items = new ArrayList<>();
+    public class PassedExam extends Exam {
+        public PassedExam(String name, int mark) {
+            super(name, mark);
+            Student.this.pass(this);
+        }
+    }
+
+    private final List<Exam> exams = new ArrayList<>();
 
     public Student(String name, String surname, String address, int age) {
         super(name, surname, address, age);
     }
 
     public void pass(Exam i) {
-        items.add(i);
+        exams.add(i);
+    }
+    public void pass(String name, int mark) {
+        pass(new Exam(name, mark));
     }
 
     @Override
     public int getAge() {
         return super.getAge();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s exams=%s", super.toString(), exams);
     }
 }

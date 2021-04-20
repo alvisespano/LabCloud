@@ -1,7 +1,8 @@
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.function.Function;
 
-public interface MyRemoteService extends Remote {
+public interface MyRemote extends Remote {
     // static nested constants
     String serviceName = "sqrt";
     String address = "localhost";
@@ -14,5 +15,7 @@ public interface MyRemoteService extends Remote {
     // example 2
     int getPersonAge(Person p) throws RemoteException;
     <P extends Person> P makeOlder(P p, int amount) throws RemoteException;
+
+    Function<Integer, Integer> getFunction(int x) throws RemoteException;
 
 }
