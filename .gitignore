@@ -23,5 +23,5 @@
 hs_err_pid*
 
 # IntelliJ
-.idea/*
-RMITest1/.idea/*
+#.idea/*
+#RMITest1/.idea/*
