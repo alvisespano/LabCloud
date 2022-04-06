@@ -15,34 +15,9 @@ public class Server extends UnicastRemoteObject implements MyRemote {
         return Math.sqrt(x);
     }
 
-    @Override
-    public int getPersonAge(Person p) {
-        return p.getAge();
-    }
-
-    @Override
-    public <P extends Person> P makeOlder(P p, int amount) throws RemoteException {
-        // sidefx
-        p.setAge(p.getAge() + amount);
-        return p;
-
-        // no sidefx
-        //return new P(p.getName(), p.getSurname(), p.getAddress(), p.getAge() + amount);
-    }
-
-    private int cnt;
-
-    @Override
-    public Function<Integer, Integer> getFunction(int y) throws RemoteException {
-        return (x) -> {
-            Server.this.cnt++;
-            return x + y;
-        };
-    }
-
     public static void main(String[] args) {
         try {
-            MyRemote server = new NegServer();
+            MyRemote server = new Server();
 
             // mode 1: create registry and register the service name
             Registry reg = LocateRegistry.createRegistry(MyRemote.port);
@@ -59,18 +34,6 @@ public class Server extends UnicastRemoteObject implements MyRemote {
         }
     }
 
-    // example 1: NegServer specialization
-    public static class NegServer extends Server {
-        public NegServer() throws RemoteException {
-            System.out.println("constructor: NegServer");
-        }
-
-        @Override
-        public double calculateSquareRoot(double x) {
-            return -Math.sqrt(x);
-        }
-
-    }
 }
 
 
