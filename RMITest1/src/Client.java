@@ -1,8 +1,49 @@
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.net.MalformedURLException;
 import java.util.function.Function;
+
+/*#include "mystubs.h"
+
+struct person {
+   char* name;
+   char* surname;
+   int age;
+};
+
+int f(int x) {
+    return x + 1;
+}
+
+person make_older_by__(person p, int n) {
+   p.age += n;
+   return p;
+}
+
+person make_older_by(person p, int n){
+        // SERIALIZE argument p
+        // SERIALIZE argument n
+        // INVOKE make_older_by
+        // RECEIVE result
+        // DESERIALIZE result
+        // RETURN deserialized result
+}
+
+void caller() {
+    int n = 23;
+    int m = f(n);
+    person gigi;
+    gigi.name = "Gigi";
+    gigi.surname = "Rossi";
+    gigi.age = 40;
+    person older_gigi = make_older_by(gigi, 10);
+
+
+    person older_gigi = RPC_INVOKE(make_older_by, gigi, 10);
+}
+
+ */
+
+
 
 public class Client {
 
