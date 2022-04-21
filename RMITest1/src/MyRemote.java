@@ -1,16 +1,11 @@
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.function.Function;
 
 public interface MyRemote extends Remote {
-    // static nested constants
-    String serviceName = "sqrt";
-    String address = "localhost";
-    int port = 5000;
-    String rmiURI = String.format("rmi://%s:%d/%s", address, port, serviceName);
 
-    // example 1
+    // the shared method
     double calculateSquareRoot(double x) throws RemoteException;
 
+    double calculatePythagorean(double a, double b) throws RemoteException;
 
 }

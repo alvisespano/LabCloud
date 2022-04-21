@@ -1,6 +1,7 @@
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.net.MalformedURLException;
-import java.util.function.Function;
 
 /*#include "mystubs.h"
 
@@ -49,21 +50,32 @@ public class Client {
 
     public static void main(String[] args) {
         try {
-            MyRemote srv = (MyRemote) Naming.lookup(MyRemote.rmiURI);
+            MyRemote srv = (MyRemote) Naming.lookup("rmi://localhost:5000/sqrt");
 
-            if (args.length != 1) {
-                usage();
+            switch (args.length) {
+                case 0:
+                    System.out.printf("USAGE: java %s <FLOAT>\n\n", Client.class.getName());
+                    break;
+
+                case 1: {
+                    double x = Double.parseDouble(args[0]);
+                    double result = srv.calculateSquareRoot(x);
+                    System.out.printf("sqrt(%g) = %g\n", x, result);
+                    break;
+                }
+
+                case 2: {
+                    double a = Double.parseDouble(args[0]);
+                    double b = Double.parseDouble(args[1]);
+                    double result = srv.calculatePythagorean(a, b);
+                    System.out.printf("pythagorean(%g, %g) = %g\n", a, b, result);
+                    break;
+                }
+
             }
-            else {
-                double x = Double.parseDouble(args[0]);
-                System.out.printf("sqrt(%g) = %g\n", x, srv.calculateSquareRoot(x));
-            }
-        } catch (NotBoundException | RemoteException | MalformedURLException e) {
+        } catch (RemoteException | MalformedURLException | NotBoundException e) {
             e.printStackTrace();
         }
     }
 
-    private static void usage() {
-        System.out.printf("USAGE: java %s <FLOAT>\n\n", Client.class.getName());
-    }
 }
