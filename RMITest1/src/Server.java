@@ -5,6 +5,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Collection;
 
+
+
 public class Server extends UnicastRemoteObject implements MyRemote {
 
     public Server() throws RemoteException {
@@ -20,6 +22,16 @@ public class Server extends UnicastRemoteObject implements MyRemote {
     @Override
     public double calculatePythagorean(double a, double b) throws RemoteException {
         return Math.sqrt(a * a + b * b);
+    }
+
+    @Override
+    public Person makeOlder(Person p, int years) throws RemoteException {
+        return new Person(p.getName(), p.getSurname(), p.getAge() + years);
+    }
+
+    @Override
+    public void makeOlder2(Person p, int years) throws RemoteException {
+        p.setAge(p.getAge() + years);
     }
 
     public static void main(String[] args) {

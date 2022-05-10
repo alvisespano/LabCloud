@@ -44,13 +44,20 @@ void caller() {
 
  */
 
+"Person[name=\"Davi\;de\";surname=\"Volpe\";age=int[00000018]]"
 
+"{ type: Person, content: { name: \"Davide\", surname: \"Volpe\", age: 24 } }"
+
+"<object type=\"Person\"><field name=\"name\">Davide</field>  <field name=\"surname\">Volpe</field>    </object>"
 
 public class Client {
 
     public static void main(String[] args) {
         try {
             MyRemote srv = (MyRemote) Naming.lookup("rmi://localhost:5000/sqrt");
+
+            Person davide = new Person("Davide", "Volpe", 24);
+            Person olderDavide = srv.makeOlder(davide, 10);
 
             switch (args.length) {
                 case 0:
