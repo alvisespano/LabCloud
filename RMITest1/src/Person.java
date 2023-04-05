@@ -1,19 +1,20 @@
-public class Person {
+import java.io.Serializable;
 
-    private String name, surname;
-    private int age;
+public class Person implements Serializable {
+    public String name;
+    public int age;
 
-    public Person(String name, String surname, int age) {
+    public Person(String name, int age) {
         this.name = name;
-        this.surname = surname;
         this.age = age;
     }
 
-    public String getName() { return name; }
-    public String getSurname() { return surname; }
-    public int getAge() { return age; }
+    public void addToAge(int n) {
+        age += n;
+    }
 
-    public void setName(String name) { this.name = name; }
-    public void setSurname(String surname) { this.surname = surname; }
-    public void setAge(int age) { this.age = age; }
+    @Override
+    public String toString() {
+        return String.format("Person { name = \"%s\"; age = %d }", name, age);
+    }
 }

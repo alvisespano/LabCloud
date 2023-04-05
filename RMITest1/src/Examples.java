@@ -1,5 +1,5 @@
-
 public class Examples {
+
     public static class Animal {
         protected int weight;
 
@@ -8,7 +8,7 @@ public class Examples {
         }
 
         public void eat(Animal a) {
-            weight = weight + a.weight;
+            this.weight = this.weight + a.weight;
         }
     }
 
@@ -24,28 +24,25 @@ public class Examples {
     }
 
     public static class Cat extends Animal {
-        public Cat(int weight) {
+        private int factor;
+
+        public Cat(int weight, int factor) {
             super(weight);
+            this.factor = factor;
         }
 
         @Override
-        public void eat(Animal a) {
-            weight = weight + a.weight * 2;
+        public void eat(Animal a) {   // ===> void eat(Animal a, Cat this)
+            this.weight = this.weight + a.weight * this.factor;
         }
+
+        // TODO write a serialize() method here for the hyierarchy
     }
 
-
-
-
     public static void examplePolymorpshim() {
-
-        Animal speck = new Cat(10);
+        Animal speck = new Cat(10, 3);
         Dog biri = new Dog(50);
-        Animal alvise = new Animal(80);
-
         speck.eat(biri);
-        alvise.eat(speck);
-
     }
 
 

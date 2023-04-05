@@ -20,23 +20,14 @@ public class Server extends UnicastRemoteObject implements MyRemote {
     }
 
     @Override
-    public double calculatePythagorean(double a, double b) throws RemoteException {
-        return Math.sqrt(a * a + b * b);
-    }
-
-    @Override
-    public Person makeOlder(Person p, int years) throws RemoteException {
-        return new Person(p.getName(), p.getSurname(), p.getAge() + years);
-    }
-
-    @Override
-    public void makeOlder2(Person p, int years) throws RemoteException {
-        p.setAge(p.getAge() + years);
+    public Person makeOlder(Person p) {
+        p.addToAge(1);
+        return p;
     }
 
     public static void main(String[] args) {
         try {
-            Server server = new NegativeServer();
+            Server server = new Server();
 
             // mode 1: create registry and register the service name
             Registry reg = LocateRegistry.createRegistry(5000);
