@@ -13,7 +13,7 @@ public class Client {
             double result = srv.calculateSquareRoot(x);
             System.out.printf("sqrt(%g) = %g\n", x, result);*/
 
-            Person pippo = new Student("Pippo", 30);
+            Student pippo = new Student("Pippo", 30);
             System.out.printf("pippo: %s\n", pippo);
             pippo = srv.makeOlder(pippo);
             System.out.printf("pippo: %s\n", pippo);

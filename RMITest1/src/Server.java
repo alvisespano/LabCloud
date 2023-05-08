@@ -1,15 +1,14 @@
+import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.Collection;
-
 
 
 public class Server extends UnicastRemoteObject implements MyRemote {
 
     public Server() throws RemoteException {
+        super();
     }
 
     @Override
@@ -20,8 +19,9 @@ public class Server extends UnicastRemoteObject implements MyRemote {
     }
 
     @Override
-    public Person makeOlder(Person p) {
-        p.addToAge(1);
+    public <P extends Person> P makeOlder(P p) {
+        p.age = p.age + 1;
+        System.out.println("bau");
         return p;
     }
 
@@ -30,12 +30,12 @@ public class Server extends UnicastRemoteObject implements MyRemote {
             Server server = new Server();
 
             // mode 1: create registry and register the service name
-            Registry reg = LocateRegistry.createRegistry(5000);
-            reg.rebind("sqrt", server);
+//            Registry reg = LocateRegistry.createRegistry(5000);
+//            reg.rebind("sqrt", server);
 
             // mode 2: use the global registry
             // 'rmiregistry' program must be running in the background on your machine
-            //Naming.rebind(MyRemoteService.rmiURI, server);
+            Naming.rebind("rmi://localhost:5000/sqrt", server);
 
             System.out.printf("server is up...\n");
 

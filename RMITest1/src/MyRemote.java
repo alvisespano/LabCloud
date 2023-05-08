@@ -5,5 +5,5 @@ public interface MyRemote extends Remote {
     // the shared method
     double calculateSquareRoot(double x) throws RemoteException;
 
-    Person makeOlder(Person p) throws RemoteException;
+    <P extends Person> P makeOlder(P p) throws RemoteException;
 }
