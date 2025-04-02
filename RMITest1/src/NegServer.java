@@ -5,8 +5,7 @@ public class NegServer extends Server {
     }
 
     @Override
-        public double calculateSquareRoot(double x) {
-            return -Math.sqrt(x);
-        }
+    public double calculateSquareRoot(double x) {
+        return -Math.sqrt(x);
     }
-
+}
