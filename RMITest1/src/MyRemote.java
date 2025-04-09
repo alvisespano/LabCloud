@@ -8,4 +8,7 @@ public interface MyRemote extends Remote {
 
     void store(String s) throws RemoteException;
     String retrieve() throws RemoteException;
+
+    void makeEat(Animal a, Animal b) throws RemoteException;
+
 }

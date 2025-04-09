@@ -13,6 +13,11 @@ public class Server extends UnicastRemoteObject implements MyRemote {
     }
 
     @Override
+    public void makeEat(Animal a, Animal b) throws RemoteException {
+        a.eat(b);
+    }
+
+    @Override
     public double calculateSquareRoot(double x) throws RemoteException {
         double r = Math.sqrt(x);
         System.out.printf("calculateSquareRoot(%g) = %g\n", x, r);
